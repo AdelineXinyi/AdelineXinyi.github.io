@@ -72,10 +72,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        .daylight-toggle:after {
-            content: "☀";
             font-size: 16px;
+        }
+        .daylight-toggle.sun:after {
+            content: "☀"; /* Sun icon */
+            color: black;
+        }
+        .daylight-toggle.moon:after {
+            content: "🌙"; /* Moon icon */
             color: black;
         }
     </style>
@@ -94,7 +98,7 @@
             <a href="experience.html">Experience</a> |
             <a href="skills.html">Skills</a>
         </nav>
-        <div class="daylight-toggle" onclick="toggleDaylightMode()"></div>
+        <div class="daylight-toggle sun" onclick="toggleDaylightMode()"></div>
     </header>
     <section>
         <h2>About Me</h2>
@@ -156,11 +160,17 @@
 
         function toggleDaylightMode() {
             const header = document.querySelector('header');
+            const toggleButton = document.querySelector('.daylight-toggle');
             const currentImage = header.style.backgroundImage;
+
             if (currentImage.includes('taka1.png')) {
                 header.style.backgroundImage = "url('images/gin1.png')";
+                toggleButton.classList.remove('sun');
+                toggleButton.classList.add('moon');
             } else {
                 header.style.backgroundImage = "url('images/taka1.png')";
+                toggleButton.classList.remove('moon');
+                toggleButton.classList.add('sun');
             }
         }
 
