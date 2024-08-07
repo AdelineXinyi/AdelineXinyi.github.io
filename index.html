@@ -13,36 +13,23 @@
             background-image: url('images/taka1.png');
             background-size: cover; /* Cover the entire header area */
             background-position: center; /* Center the background image */
-            height: 100vh; /* Make header full height of viewport */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            padding: 40px 20px;
             color: white; /* Ensure text is readable */
             text-align: center;
-            position: relative; /* Position relative for absolute positioning inside */
+            position: relative; /* Position relative for the switch button */
         }
         .profile-photo {
             width: 150px;  /* Adjust width as needed */
             height: 150px; /* Adjust height as needed */
             border-radius: 50%; /* Optional: Makes the image circular */
-            margin-top: 20px; /* Add margin if needed */
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px; /* Increase margin between links */
-            font-size: 1.2em; /* Increase font size for links */
         }
         .typing-container {
-            position: absolute;
-            top: 100px; /* Adjust top position as needed */
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2.5em; /* Adjust font size for typing text */
-            font-weight: bold;
+            display: inline-block;
+            position: relative;
+            margin-bottom: 20px; /* Space below typing text */
         }
         .typing-text {
+            font-size: 2.5em; /* Adjust font size for typing text */
             white-space: nowrap;
             overflow: hidden;
             border-right: .15em solid orange; /* Cursor effect */
@@ -52,6 +39,29 @@
             from, to { border-color: transparent }
             50% { border-color: orange }
         }
+        nav {
+            margin-top: 20px; /* Space above the dropdown */
+        }
+        select {
+            font-size: 1.2em;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: url('images/moon.png') no-repeat center center;
+            background-size: cover;
+            width: 30px;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+        }
+        .switch.day {
+            background: url('images/sun.png') no-repeat center center;
+            background-size: cover;
+        }
         .scrollable-section {
             max-height: 200px; /* Adjust height as needed */
             overflow-y: auto;
@@ -59,46 +69,23 @@
             border: 1px solid #ccc; /* Optional: Adds a border around the section */
             background-color: #f9f9f9; /* Optional: Adds a background color to the section */
         }
-        .daylight-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: white;
-            border: 2px solid black;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        }
-        .daylight-toggle.sun:after {
-            content: "☀"; /* Sun icon */
-            color: black;
-        }
-        .daylight-toggle.moon:after {
-            content: "🌙"; /* Moon icon */
-            color: black;
-        }
     </style>
 </head>
 <body>
     <header>
+        <button class="switch" onclick="toggleDaylight()"></button>
         <div class="typing-container">
             <span id="typing-text" class="typing-text"></span>
         </div>
-        <img src="images/photo.jpeg" alt="Xinyi Li's Profile Photo" class="profile-photo">
-        <h1 style="font-size: 2.5em;">Xinyi Li</h1> <!-- Increase font size for name -->
         <p style="font-size: 1.5em;">Data Science Major | Economics Minor</p> <!-- Increase font size for description -->
         <nav>
-            <a href="index.html">Home</a> |
-            <a href="about.html">About</a> |
-            <a href="experience.html">Experience</a> |
-            <a href="skills.html">Skills</a>
+            <select onchange="location = this.value;">
+                <option value="index.html">Home</option>
+                <option value="about.html">About</option>
+                <option value="experience.html">Experience</option>
+                <option value="skills.html">Skills</option>
+            </select>
         </nav>
-        <div class="daylight-toggle sun" onclick="toggleDaylightMode()"></div>
     </header>
     <section>
         <h2>About Me</h2>
@@ -136,48 +123,28 @@
                     element.innerHTML += text.charAt(i);
                     i++;
                     setTimeout(typing, speed);
-                } else {
-                    setTimeout(() => {
-                        erase();
-                    }, 1000);
                 }
             }
-
-            function erase() {
-                if (i > 0) {
-                    element.innerHTML = text.substring(0, i - 1);
-                    i--;
-                    setTimeout(erase, speed / 2);
-                } else {
-                    setTimeout(() => {
-                        typing();
-                    }, 1000);
-                }
-            }
-
             typing();
-        }
-
-        function toggleDaylightMode() {
-            const header = document.querySelector('header');
-            const toggleButton = document.querySelector('.daylight-toggle');
-            const currentImage = header.style.backgroundImage;
-
-            if (currentImage.includes('taka1.png')) {
-                header.style.backgroundImage = "url('images/gin1.png')";
-                toggleButton.classList.remove('sun');
-                toggleButton.classList.add('moon');
-            } else {
-                header.style.backgroundImage = "url('images/taka1.png')";
-                toggleButton.classList.remove('moon');
-                toggleButton.classList.add('sun');
-            }
         }
 
         document.addEventListener("DOMContentLoaded", function() {
             const typingText = document.getElementById('typing-text');
             typeWriter(typingText, "Here's Adeline Li", 100); // Text and speed in milliseconds
         });
+
+        function toggleDaylight() {
+            const header = document.querySelector('header');
+            const switchBtn = document.querySelector('.switch');
+
+            if (header.style.backgroundImage.includes('taka1.png')) {
+                header.style.backgroundImage = "url('images/gin1.png')";
+                switchBtn.classList.add('day');
+            } else {
+                header.style.backgroundImage = "url('images/taka1.png')";
+                switchBtn.classList.remove('day');
+            }
+        }
     </script>
 </body>
 </html>
