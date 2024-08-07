@@ -39,21 +39,7 @@
         .head-bar .nav .last-nav-item {
             margin-right: 50px; /* Add margin to make space for the widget */
         }
-        .widget {
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        .widget img {
-            width: 20px;
-            height: 20px;
-        }
+       
         header {
             background-image: url('images/taka1.png');
             background-size: cover;
@@ -94,6 +80,29 @@
             border: 1px solid #ccc;
             background-color: #f9f9f9;
         }
+         .daylight-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        .daylight-toggle.sun:after {
+            content: "☀"; /* Sun icon */
+            color: black;
+        }
+        .daylight-toggle.moon:after {
+            content: "🌙"; /* Moon icon */
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -104,9 +113,7 @@
             <a href="experience.html">Experience</a>
             <a href="skills.html" class="last-nav-item">Skills</a>
         </div>
-        <div id="daylight-mode" class="widget">
-            <img src="images/moon.png" alt="Daylight Mode">
-        </div>
+        <div class="daylight-toggle sun" onclick="toggleDaylightMode()"></div>
     </div>
     <header>
         <div class="typing-container">
@@ -152,22 +159,47 @@
                     element.innerHTML += text.charAt(i);
                     i++;
                     setTimeout(typing, speed);
+                } else {
+                    setTimeout(() => {
+                        erase();
+                    }, 1000);
                 }
             }
+
+            function erase() {
+                if (i > 0) {
+                    element.innerHTML = text.substring(0, i - 1);
+                    i--;
+                    setTimeout(erase, speed / 2);
+                } else {
+                    setTimeout(() => {
+                        typing();
+                    }, 1000);
+                }
+            }
+
             typing();
+        }
+
+        function toggleDaylightMode() {
+            const header = document.querySelector('header');
+            const toggleButton = document.querySelector('.daylight-toggle');
+            const currentImage = header.style.backgroundImage;
+
+            if (currentImage.includes('taka1.png')) {
+                header.style.backgroundImage = "url('images/gin1.png')";
+                toggleButton.classList.remove('sun');
+                toggleButton.classList.add('moon');
+            } else {
+                header.style.backgroundImage = "url('images/taka1.png')";
+                toggleButton.classList.remove('moon');
+                toggleButton.classList.add('sun');
+            }
         }
 
         document.addEventListener("DOMContentLoaded", function() {
             const typingText = document.getElementById('typing-text');
             typeWriter(typingText, "Here's Adeline Li", 100); // Text and speed in milliseconds
-        });
-
-        // Daylight mode toggle
-        document.getElementById('daylight-mode').addEventListener('click', function() {
-            const header = document.querySelector('header');
-            const isDaylight = header.style.backgroundImage.includes('gin1.png');
-            header.style.backgroundImage = isDaylight ? "url('images/taka1.png')" : "url('images/gin1.png')";
-            document.querySelector('#daylight-mode img').src = isDaylight ? 'images/moon.png' : 'images/sun.png';
         });
     </script>
 </body>
