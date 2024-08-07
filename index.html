@@ -13,10 +13,14 @@
             background-image: url('images/taka1.png');
             background-size: cover; /* Cover the entire header area */
             background-position: center; /* Center the background image */
-            padding: 40px 20px;
+            height: 100vh; /* Full viewport height */
             color: white; /* Ensure text is readable */
             text-align: center;
             position: relative; /* Position relative for the switch buttons */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            padding: 20px;
         }
         .profile-photo {
             width: 150px;  /* Adjust width as needed */
@@ -98,6 +102,7 @@
         <div class="typing-container">
             <span id="typing-text" class="typing-text"></span>
         </div>
+        <img src="images/photo.jpeg" alt="Xinyi Li's Profile Photo" class="profile-photo">
         <p style="font-size: 1.5em;">Data Science Major | Economics Minor</p> <!-- Increase font size for description -->
     </header>
     <div id="dropdown-menu" class="dropdown-menu">
@@ -172,5 +177,4 @@
     </script>
 </body>
 </html>
-
 
