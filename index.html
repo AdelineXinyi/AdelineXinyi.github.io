@@ -36,7 +36,7 @@
         }
         .typing-container {
             position: absolute;
-            top: 20px; /* Adjust top position as needed */
+            top: 100px; /* Adjust top position as needed */
             left: 50%;
             transform: translateX(-50%);
             font-size: 2.5em; /* Adjust font size for typing text */
@@ -112,14 +112,31 @@
                     element.innerHTML += text.charAt(i);
                     i++;
                     setTimeout(typing, speed);
+                } else {
+                    setTimeout(() => {
+                        erase();
+                    }, 1000);
                 }
             }
+
+            function erase() {
+                if (i > 0) {
+                    element.innerHTML = text.substring(0, i - 1);
+                    i--;
+                    setTimeout(erase, speed / 2);
+                } else {
+                    setTimeout(() => {
+                        typing();
+                    }, 1000);
+                }
+            }
+
             typing();
         }
 
         document.addEventListener("DOMContentLoaded", function() {
             const typingText = document.getElementById('typing-text');
-            typeWriter(typingText, "Here's Adeline", 100); // Text and speed in milliseconds
+            typeWriter(typingText, "Here's Adeline Li", 100); // Text and speed in milliseconds
         });
     </script>
 </body>
