@@ -13,7 +13,7 @@
             background-image: url('images/taka1.png');
             background-size: cover; /* Cover the entire header area */
             background-position: center; /* Center the background image */
-            padding: 20px;
+            padding: 40px 20px;
             color: white; /* Ensure text is readable */
             text-align: center;
         }
@@ -25,9 +25,10 @@
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 15px; /* Increase margin between links */
+            font-size: 1.2em; /* Increase font size for links */
         }
-        .scrollable-section {
+         .scrollable-section {
             max-height: 200px; /* Adjust height as needed */
             overflow-y: auto;
             padding: 10px;
@@ -38,10 +39,10 @@
 </head>
 <body>
     <header>
-        <img src="images/photo.jpeg" alt="Xinyi Li's Profile Photo" class="profile-photo" style="width:100px; height:100px;">
-        <h1>Xinyi Li</h1>
-        <p>Data Science Major | Economics Minor</p>
-         <nav>
+       <img src="images/photo.jpeg" alt="Xinyi Li's Profile Photo" class="profile-photo">
+        <h1 style="font-size: 2.5em;">Xinyi Li</h1> <!-- Increase font size for name -->
+        <p style="font-size: 1.5em;">Data Science Major | Economics Minor</p> <!-- Increase font size for description -->
+        <nav>
             <a href="index.html">Home</a> |
             <a href="about.html">About</a> |
             <a href="experience.html">Experience</a> |
