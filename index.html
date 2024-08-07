@@ -29,6 +29,7 @@
             display: flex;
             align-items: center;
             flex-grow: 1;
+            justify-content: center; /* Center the navigation links */
         }
         .head-bar .nav a {
             color: white;
@@ -37,9 +38,29 @@
             font-size: 1em;
         }
         .head-bar .nav .last-nav-item {
-            margin-right: 50px; /* Add margin to make space for the widget */
+            margin-right: 15px; /* Add margin to make space for the widget */
         }
-       
+        .daylight-toggle {
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin-left: 15px; /* Add margin to the left of the last nav item */
+        }
+        .daylight-toggle.sun:after {
+            content: "☀"; /* Sun icon */
+            color: black;
+        }
+        .daylight-toggle.moon:after {
+            content: "🌙"; /* Moon icon */
+            color: black;
+        }
         header {
             background-image: url('images/taka1.png');
             background-size: cover;
@@ -80,29 +101,6 @@
             border: 1px solid #ccc;
             background-color: #f9f9f9;
         }
-         .daylight-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: white;
-            border: 2px solid black;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        }
-        .daylight-toggle.sun:after {
-            content: "☀"; /* Sun icon */
-            color: black;
-        }
-        .daylight-toggle.moon:after {
-            content: "🌙"; /* Moon icon */
-            color: black;
-        }
     </style>
 </head>
 <body>
@@ -112,8 +110,8 @@
             <a href="about.html">About</a>
             <a href="experience.html">Experience</a>
             <a href="skills.html" class="last-nav-item">Skills</a>
+            <div class="daylight-toggle sun" onclick="toggleDaylightMode()"></div>
         </div>
-        <div class="daylight-toggle sun" onclick="toggleDaylightMode()"></div>
     </div>
     <header>
         <div class="typing-container">
@@ -185,13 +183,16 @@
             const header = document.querySelector('header');
             const toggleButton = document.querySelector('.daylight-toggle');
             const currentImage = header.style.backgroundImage;
+             const headBar = document.querySelector('.head-bar');
 
             if (currentImage.includes('taka1.png')) {
                 header.style.backgroundImage = "url('images/gin1.png')";
+                headBar.style.backgroundImage = "url('images/gin1.png')";
                 toggleButton.classList.remove('sun');
                 toggleButton.classList.add('moon');
             } else {
                 header.style.backgroundImage = "url('images/taka1.png')";
+                headBar.style.backgroundImage = "url('images/taka1.png')";
                 toggleButton.classList.remove('moon');
                 toggleButton.classList.add('sun');
             }
@@ -204,4 +205,3 @@
     </script>
 </body>
 </html>
-
