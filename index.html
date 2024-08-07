@@ -8,6 +8,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevent scrolling while sakura fall */
         }
         .head-bar {
             background-image: url('images/taka1.png');
@@ -73,15 +74,18 @@
             color: white;
             text-align: center;
             padding-top: 60px; /* Space for the fixed head bar */
+            position: relative; /* For sakura positioning */
         }
         .profile-photo {
             width: 150px;
             height: 150px;
             border-radius: 50%;
             margin-bottom: 20px;
+            z-index: 2; /* Above sakura */
         }
         .typing-container {
             margin-bottom: 20px;
+            z-index: 2; /* Above sakura */
         }
         .typing-text {
             font-size: 2.5em;
@@ -89,6 +93,7 @@
             overflow: hidden;
             border-right: .15em solid orange;
             animation: blink-caret 0.75s step-end infinite;
+            z-index: 2; /* Above sakura */
         }
         @keyframes blink-caret {
             from, to { border-color: transparent }
@@ -100,6 +105,27 @@
             padding: 10px;
             border: 1px solid #ccc;
             background-color: #f9f9f9;
+        }
+        .sakura {
+            position: absolute;
+            top: -10px;
+            width: 20px;
+            height: 20px;
+            background-image: url('images/sakura1.png');
+            background-size: cover;
+            opacity: 0.8;
+            z-index: 1; /* Below text */
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.2;
+            }
         }
     </style>
 </head>
@@ -120,6 +146,8 @@
         <img src="images/photo.jpeg" alt="Xinyi Li's Profile Photo" class="profile-photo">
         <h1 style="font-size: 2.5em;">Xinyi Li</h1>
         <p style="font-size: 1.5em;">Data Science Major | Economics Minor</p>
+        <!-- Sakura falling effect container -->
+        <div id="sakura-container"></div>
     </header>
     <section>
         <h2>About Me</h2>
@@ -198,10 +226,16 @@
             }
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const typingText = document.getElementById('typing-text');
-            typeWriter(typingText, "Here's Adeline Li", 100); // Text and speed in milliseconds
-        });
-    </script>
-</body>
-</html>
+        function createSakura() {
+            const sakuraContainer = document.getElementById('sakura-container');
+            for (let i = 0; i < 50; i++) {
+                const sakura = document.createElement('div');
+                sakura.className = 'sakura';
+                sakura.style.left = Math.random() * 100 + 'vw';
+                sakura.style.animationDuration = Math.random() * 5 + 5 + 's';
+                sakura.style.animationDelay = Math.random() * 5 + 's';
+                sakuraContainer.appendChild(sakura);
+            }
+        }
+
+
