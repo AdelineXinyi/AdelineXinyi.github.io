@@ -25,11 +25,19 @@
             z-index: 1000; /* Ensure the head bar is above other content */
             box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: Adds shadow for better visibility */
         }
+        .head-bar .nav {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
         .head-bar .nav a {
             color: white;
             text-decoration: none;
             margin: 0 15px;
             font-size: 1em;
+        }
+        .head-bar .nav .last-nav-item {
+            margin-right: 50px; /* Add margin to make space for the widget */
         }
         .widget {
             background: white;
@@ -41,7 +49,6 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            position: relative; /* Ensure proper positioning */
         }
         .widget img {
             width: 20px;
@@ -95,7 +102,7 @@
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="experience.html">Experience</a>
-            <a href="skills.html">Skills</a>
+            <a href="skills.html" class="last-nav-item">Skills</a>
         </div>
         <div id="daylight-mode" class="widget">
             <img src="images/moon.png" alt="Daylight Mode">
@@ -165,3 +172,4 @@
     </script>
 </body>
 </html>
+
