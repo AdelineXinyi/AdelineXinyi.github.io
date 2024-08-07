@@ -28,6 +28,21 @@
             margin: 0 15px; /* Increase margin between links */
             font-size: 1.2em; /* Increase font size for links */
         }
+        .typing-container {
+            display: inline-block;
+            position: relative;
+        }
+        .typing-text {
+            font-size: 2.5em; /* Adjust font size for typing text */
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .15em solid orange; /* Cursor effect */
+            animation: blink-caret 0.75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange }
+        }
          .scrollable-section {
             max-height: 200px; /* Adjust height as needed */
             overflow-y: auto;
@@ -39,8 +54,9 @@
 </head>
 <body>
     <header>
-       <img src="images/photo.jpeg" alt="Xinyi Li's Profile Photo" class="profile-photo">
-        <h1 style="font-size: 2.5em;">Xinyi Li</h1> <!-- Increase font size for name -->
+      <div class="typing-container">
+            <span id="typing-text" class="typing-text"></span>
+        </div>
         <p style="font-size: 1.5em;">Data Science Major | Economics Minor</p> <!-- Increase font size for description -->
         <nav>
             <a href="index.html">Home</a> |
@@ -75,7 +91,25 @@
         </ul>
     </section>
     <footer>
-        <p>Contact: xinyili@example.com</p>
+        <p>Contact: xinyiade@umich.edu</p>
     </footer>
+    <script>
+        function typeWriter(element, text, speed) {
+            let i = 0;
+            function typing() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typing, speed);
+                }
+            }
+            typing();
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const typingText = document.getElementById('typing-text');
+            typeWriter(typingText, "Here's Adeline", 100); // Text and speed in milliseconds
+        });
+    </script>
 </body>
 </html>
