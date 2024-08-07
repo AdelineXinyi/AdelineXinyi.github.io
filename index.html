@@ -8,7 +8,6 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            overflow: hidden; /* Prevent scrolling while sakura fall */
         }
         .head-bar {
             background-image: url('images/taka1.png');
@@ -111,7 +110,7 @@
             top: -10px;
             width: 20px;
             height: 20px;
-            background-image: url('images/sakura1.png');
+            background-image: url('images/sakura.png');
             background-size: cover;
             opacity: 0.8;
             z-index: 1; /* Below text */
@@ -126,6 +125,15 @@
                 transform: translateY(100vh) rotate(360deg);
                 opacity: 0.2;
             }
+        }
+        #sakura-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none; /* Make sakura clicks pass through */
+            z-index: 1; /* Below content */
         }
     </style>
 </head>
@@ -146,9 +154,8 @@
         <img src="images/photo.jpeg" alt="Xinyi Li's Profile Photo" class="profile-photo">
         <h1 style="font-size: 2.5em;">Xinyi Li</h1>
         <p style="font-size: 1.5em;">Data Science Major | Economics Minor</p>
-        <!-- Sakura falling effect container -->
-        <div id="sakura-container"></div>
     </header>
+    <div id="sakura-container"></div> <!-- Sakura falling effect container -->
     <section>
         <h2>About Me</h2>
         <div class="scrollable-section">
