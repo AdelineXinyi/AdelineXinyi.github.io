@@ -11,106 +11,146 @@
         }
         header {
             background-image: url('images/taka1.png');
-            background-size: cover; /* Cover the entire header area */
-            background-position: center; /* Center the background image */
-            height: 100vh; /* Full viewport height */
-            color: white; /* Ensure text is readable */
-            text-align: center;
-            position: relative; /* Position relative for the switch buttons */
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Make the header cover the full viewport height */
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center content vertically */
-            padding: 20px;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative; /* Position relative for absolute positioning of widgets */
         }
         .profile-photo {
-            width: 150px;  /* Adjust width as needed */
-            height: 150px; /* Adjust height as needed */
-            border-radius: 50%; /* Optional: Makes the image circular */
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px; /* Space between profile photo and text */
+        }
+        nav {
+            position: absolute;
+            top: 20px;
+            right: 50px; /* Space from the right */
+            display: flex;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
         }
         .typing-container {
-            display: inline-block;
-            position: relative;
-            margin-bottom: 20px; /* Space below typing text */
+            position: absolute;
+            top: 20px; /* Adjust as needed */
+            left: 50%;
+            transform: translateX(-50%);
         }
         .typing-text {
-            font-size: 2.5em; /* Adjust font size for typing text */
+            font-size: 2.5em;
             white-space: nowrap;
             overflow: hidden;
-            border-right: .15em solid orange; /* Cursor effect */
+            border-right: .15em solid orange;
             animation: blink-caret 0.75s step-end infinite;
         }
         @keyframes blink-caret {
             from, to { border-color: transparent }
             50% { border-color: orange }
         }
-        .nav-widget, .daylight-widget {
+        .widget-container {
             position: absolute;
             top: 20px;
-            cursor: pointer;
+            right: 10px; /* Adjust as needed */
+            display: flex;
+            align-items: center;
         }
-        .nav-widget {
-            right: 60px; /* Position it to the left of the daylight button */
-            background: url('images/menu.png') no-repeat center center;
-            background-size: cover;
-            width: 30px;
-            height: 30px;
-        }
-        .daylight-widget {
-            right: 20px;
-            background: url('images/moon.png') no-repeat center center;
-            background-size: cover;
-            width: 30px;
-            height: 30px;
-            border: none;
-        }
-        .daylight-widget.day {
-            background: url('images/sun.png') no-repeat center center;
-            background-size: cover;
-        }
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 60px;
+        .widget {
             background: white;
             border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .widget img {
+            width: 20px; /* Adjust icon size */
+            height: 20px;
+        }
+        .dropdown {
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            display: flex;
+            align-items: center;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 30px;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
         }
-        .dropdown-menu a {
-            display: block;
-            padding: 10px;
+        .dropdown-content a {
             color: black;
+            padding: 12px 16px;
             text-decoration: none;
+            display: block;
         }
-        .dropdown-menu a:hover {
-            background: #f0f0f0;
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
         .scrollable-section {
-            max-height: 200px; /* Adjust height as needed */
+            max-height: 200px;
             overflow-y: auto;
             padding: 10px;
-            border: 1px solid #ccc; /* Optional: Adds a border around the section */
-            background-color: #f9f9f9; /* Optional: Adds a background color to the section */
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
         }
     </style>
 </head>
 <body>
     <header>
-        <button class="nav-widget" onclick="toggleDropdown()"></button>
-        <button class="daylight-widget" onclick="toggleDaylight()"></button>
         <div class="typing-container">
             <span id="typing-text" class="typing-text"></span>
         </div>
         <img src="images/photo.jpeg" alt="Xinyi Li's Profile Photo" class="profile-photo">
-        <p style="font-size: 1.5em;">Data Science Major | Economics Minor</p> <!-- Increase font size for description -->
+        <h1 style="font-size: 2.5em;">Xinyi Li</h1>
+        <p style="font-size: 1.5em;">Data Science Major | Economics Minor</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="experience.html">Experience</a>
+            <a href="skills.html">Skills</a>
+        </nav>
+        <div class="widget-container">
+            <div id="daylight-mode" class="widget">
+                <img src="images/moon.png" alt="Daylight Mode">
+            </div>
+            <div class="dropdown">
+                <div class="widget">
+                    <img src="images/menu.png" alt="Menu">
+                </div>
+                <div class="dropdown-content">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="experience.html">Experience</a>
+                    <a href="skills.html">Skills</a>
+                </div>
+            </div>
+        </div>
     </header>
-    <div id="dropdown-menu" class="dropdown-menu">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="experience.html">Experience</a>
-        <a href="skills.html">Skills</a>
-    </div>
     <section>
         <h2>About Me</h2>
         <div class="scrollable-section">
@@ -157,23 +197,13 @@
             typeWriter(typingText, "Here's Adeline Li", 100); // Text and speed in milliseconds
         });
 
-        function toggleDaylight() {
+        // Daylight mode toggle
+        document.getElementById('daylight-mode').addEventListener('click', function() {
             const header = document.querySelector('header');
-            const switchBtn = document.querySelector('.daylight-widget');
-
-            if (header.style.backgroundImage.includes('taka1.png')) {
-                header.style.backgroundImage = "url('images/gin1.png')";
-                switchBtn.classList.add('day');
-            } else {
-                header.style.backgroundImage = "url('images/taka1.png')";
-                switchBtn.classList.remove('day');
-            }
-        }
-
-        function toggleDropdown() {
-            const dropdownMenu = document.getElementById('dropdown-menu');
-            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
-        }
+            const isDaylight = header.style.backgroundImage.includes('gin1.png');
+            header.style.backgroundImage = isDaylight ? "url('images/taka1.png')" : "url('images/gin1.png')";
+            document.querySelector('#daylight-mode img').src = isDaylight ? 'images/moon.png' : 'images/sun.png';
+        });
     </script>
 </body>
 </html>
