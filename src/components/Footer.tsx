@@ -13,9 +13,6 @@ export default function Footer() {
           <a href={`mailto:${profile.email}`}>{profile.email}</a>
         </p>
         <div className={styles.divider} />
-        <p className={styles.copy}>
-          © {year} {profile.name} · {profile.university}
-        </p>
       </div>
     </footer>
   )
