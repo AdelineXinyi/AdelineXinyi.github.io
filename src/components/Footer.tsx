@@ -1,0 +1,22 @@
+// src/components/Footer.tsx
+import styles from './Footer.module.css'
+import profile from '../data/profile'
+
+export default function Footer() {
+  const year = new Date().getFullYear()
+  return (
+    <footer id="contact" className={styles.footer}>
+      <div className="container">
+        <h2 className={styles.sectionTitle}>Contact</h2>
+        <p className={styles.contactText}>
+          The best way to reach me is by email:{' '}
+          <a href={`mailto:${profile.email}`}>{profile.email}</a>
+        </p>
+        <div className={styles.divider} />
+        <p className={styles.copy}>
+          © {year} {profile.name} · {profile.university}
+        </p>
+      </div>
+    </footer>
+  )
+}

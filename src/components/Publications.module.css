@@ -1,0 +1,83 @@
+
+.section {
+  padding: 2rem 0 3rem;
+  background: var(--color-bg-subtle);
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--color-blue);
+  margin-bottom: 2rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.yearGroup {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 0 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.yearLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  letter-spacing: 0.05em;
+  padding-top: 0.15rem;
+}
+
+.pubList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pubItem {
+  border-left: 2px solid var(--color-maize);
+  padding-left: 1rem;
+}
+
+.pubTitle {
+  font-size: 0.975rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.5;
+  margin-bottom: 0.2rem;
+}
+
+.pubAuthors {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.pubVenue {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  font-style: italic;
+  margin-bottom: 0.4rem;
+}
+
+.pubLinks {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.pubLink {
+  font-size: 0.8rem;
+  color: var(--color-blue);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.pubLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .yearGroup { grid-template-columns: 1fr; gap: 0.5rem; }
+  .yearLabel { margin-bottom: 0.5rem; }
+}

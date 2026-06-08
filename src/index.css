@@ -1,0 +1,51 @@
+/* src/index.css */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-maize: #FFCB05;
+  --color-blue: #00274C;
+  --color-blue-light: #1f3f6e;
+  --color-text: #1a1a1a;
+  --color-text-muted: #555;
+  --color-text-light: #777;
+  --color-bg: #fff;
+  --color-bg-subtle: #f8f8f6;
+  --color-border: #e5e5e2;
+  --color-link: #00274C;
+  --font-serif: 'EB Garamond', Georgia, serif;
+  --font-sans: 'Source Sans 3', system-ui, sans-serif;
+  --max-width: 860px;
+  --content-width: 680px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
