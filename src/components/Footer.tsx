@@ -3,7 +3,6 @@ import styles from './Footer.module.css'
 import profile from '../data/profile'
 
 export default function Footer() {
-  const year = new Date().getFullYear()
   return (
     <footer id="contact" className={styles.footer}>
       <div className="container">
